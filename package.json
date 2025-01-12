@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx src/infra/config/app/server.ts",
-    "dev:watch": "tsx watch src/infra/config/app/server.ts",
+    "dev": "tsx watch src/infra/config/app/server.ts",
     "build": "tsup src",
     "test": "vitest"
   },

@@ -1,19 +1,17 @@
 import { User } from "../../domain/entities/User";
 import { IUserRepository } from "../../domain/irepository/IUserRepository";
+import { UserDAO } from "../dao/UserDAO";
 
-class UserRepository implements IUserRepository {
-    async findByEmail(email: string): Promise<User> {
-        return new User({
-            name: 'any_name',
-            email: 'any_email',
-            password: 'any_password',
-            role: 'any_role'
-        });
+export class UserRepository implements IUserRepository {
+    
+    constructor(private userDao: UserDAO) {}
+    
+    async findByEmail(email: string): Promise<User | boolean> {
+        return this.userDao.findByEmail(email);
     }
 
-    async save(user: User): Promise<void> {
-        return;
+    async save(user: User): Promise<User> {
+        return this.userDao.save(user);
     }
 }
 
-export const userRepository = new UserRepository();

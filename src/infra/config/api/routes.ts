@@ -1,9 +1,11 @@
 import { Router, Request, Response } from "express";
+import { createUserController } from "../../../usecases/CreateUser/DependencyInjector";
 
 const router = Router();
 
-router.get('/user/signup', (request: Request, response: Response) => {
-    response.status(201).send("user");
+router.post('/user/signup', (req: Request, res: Response) => {
+    console.log("salve");
+    createUserController.handle(req, res);
 });
 
 router.get('/', (request: Request, response: Response) => {
