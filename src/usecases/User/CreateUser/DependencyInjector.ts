@@ -1,5 +1,5 @@
-import { UserDAO } from "../../infra/dao/UserDAO";
-import { UserRepository } from "../../infra/repository/UserRepository";
+import { UserDAO } from "../../../infra/dao/UserDAO";
+import { UserRepository } from "../../../infra/repository/UserRepository";
 import { CreateUserController } from "./CreateUserController";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 

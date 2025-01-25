@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { CreateUserUseCase } from "./CreateUserUseCase";
-import { any } from "zod";
 
 export class CreateUserController{
     constructor(
