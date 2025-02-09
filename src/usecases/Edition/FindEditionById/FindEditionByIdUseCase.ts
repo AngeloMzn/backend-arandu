@@ -8,7 +8,7 @@ export class FindEditionByIdUseCase {
   ) {
     
   }
-  async execute(id:string) {
+  async execute(id:number) {
     return this.editionRepository.findById(id);
   }
 

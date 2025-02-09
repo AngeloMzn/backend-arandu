@@ -7,7 +7,7 @@ export class FindEditionByIdController{
     ){}
 
     async handle(req: Request, res: Response): Promise<Response>{
-        const id = req.params.id; ;
+        const id = Number(req.params.id);
         try {
             await this.findEditionByIdUseCase.execute(id);
 

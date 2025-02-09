@@ -22,7 +22,7 @@ export class EditionEvaluationCountPrismaMapper {
     }
     static toPrismaModel(edition: editionEvaluationCountDomain) {
         return {
-            editionId: edition.edition.id,
+            editionId: edition.edition.id!,
             minimumLiveComitteeEvaluation: edition.minimumLiveComitteeEvaluation,
             maximumLiveComitteeEvaluation: edition.maximumLiveComitteeEvaluation,
             minimumLiveCommomEvaluation: edition.minimumLiveCommomEvaluation,

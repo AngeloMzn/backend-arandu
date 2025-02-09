@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id        String   @unique
+  id        Int   @unique  @id @default(autoincrement())
   email     String   @unique
   name      String?
   role      String   @default("user")
@@ -18,9 +18,9 @@ model User {
 }
 
 model Edition {
-  id                    String   @unique
+  id                    Int    @unique @id @default(autoincrement())
   name                  String
-  year                  Int
+  year                  Int @unique
   registrationStart     DateTime
   registrationEnd       DateTime
   fixesStart            DateTime
@@ -36,7 +36,7 @@ model Edition {
 }
 
 model EditionWeight {
-  id      String  @unique
+  id     Int @unique @id @default(autoincrement())
   edition Edition @relation(fields: [editionId], references: [id])
   liveComitteeEvaluationWeight   Int
   liveCommomEvaluationWeight     Int
@@ -44,11 +44,11 @@ model EditionWeight {
   onlineCommomEvaluationWeight   Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  editionId String @unique
+  editionId Int @unique
 }
 
 model EditionEvaluationCount {
-  id                              String   @unique
+  id                    Int      @unique @id @default(autoincrement())
   minimumOnlineComitteeEvaluation Int
   minimumOnlineCommomEvaluation   Int
   minimumLiveComitteeEvaluation   Int
@@ -57,7 +57,7 @@ model EditionEvaluationCount {
   maximumOnlineCommomEvaluation   Int
   maximumLiveComitteeEvaluation   Int
   maximumLiveCommomEvaluation     Int
-  editionId                       String  @unique
+  editionId                       Int  @unique
   createdAt                       DateTime @default(now())
   updatedAt                       DateTime @updatedAt
 

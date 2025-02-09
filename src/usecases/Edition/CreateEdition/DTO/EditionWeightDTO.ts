@@ -1,5 +1,5 @@
 export interface CreateEditionWeightDTO {
-    EditionId:                      String
+    EditionId:                      number
     liveComitteeEvaluationWeight:   Number
     liveCommomEvaluationWeight:     Number
     onlineComitteeEvaluationWeight: Number

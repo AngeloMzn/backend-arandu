@@ -3,34 +3,39 @@ import { IEditionWeightDAO } from "../../domain/idao/IEditionWeightDAO";
 import { db } from "../config/db/db";
 import { EditionWeightPrismaMapper } from "../prismaMappers/EditionWeightMapper";
 
-
 export class EditionWeightDAO implements IEditionWeightDAO {
 
   constructor() { }
 
-  findById(id: string): Promise<EditionWeight | null> {
-    return db.editionWeight.findUnique({
-      where: {
-        id: id
-      }
-    }).then((editionWeight) => {
+  async findById(id: number): Promise<EditionWeight | null> {
+    try {
+      const editionWeight = await db.editionWeight.findUnique({
+        where: { id: id }
+      });
+      
       if (editionWeight) {
         return EditionWeightPrismaMapper.toDomain(editionWeight);
       }
       return null;
-    });
+    } catch (error: any) {
+      console.error('Error finding EditionWeight:', error);
+      throw new Error(`Database error: ${error.message}`);
+    }
   }
 
   async save(editionWeight: EditionWeight) {
+    try {
+      const editionWeightModel = EditionWeightPrismaMapper.toPrismaModel(editionWeight);
+      
+      const editionFromPrisma = await db.editionWeight.create({
+        data: editionWeightModel
+      });
 
-    const editionWeightModel = EditionWeightPrismaMapper.toPrismaModel(editionWeight);
-    console.log(editionWeightModel)
-    const editionFromPrisma = db.editionWeight.create({
-      data: editionWeightModel
-    });
-
-    //retorna o objeto apenas com o id possivelmente
-    return EditionWeightPrismaMapper.toDomain(await editionFromPrisma);
+      return EditionWeightPrismaMapper.toDomain(editionFromPrisma);
+    } catch (error: any) {
+      console.error('Error creating EditionWeight:', error);
+      throw new Error(`Database operation failed: ${error.message}`);
+    }
   }
 
 }

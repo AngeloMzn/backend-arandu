@@ -2,7 +2,7 @@ import { uuid } from "uuidv4";
 import { Edition } from "./Edition";
 
 export class EditionWeight{
-    public readonly id!: string;
+    public readonly id?: number;
     public liveComitteeEvaluationWeight!: number
     public liveCommomEvaluationWeight!: number
     public onlineComitteeEvaluationWeight!: number
@@ -11,10 +11,10 @@ export class EditionWeight{
     public readonly createdAt!: Date;
     public updatedAt!: Date;
 
-    constructor(props: Omit<EditionWeight, 'id' | 'createdAt' | 'updatedAt'>, id?: number){
+    constructor(props: Omit<EditionWeight,'createdAt' | 'updatedAt'>, id?: number){
         Object.assign(this, props);
-        if(!id){
-            this.id =  uuid();
+        if(id){
+            this.id = id;
         }
     }
 }

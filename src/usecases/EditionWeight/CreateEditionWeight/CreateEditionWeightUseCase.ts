@@ -11,7 +11,7 @@ export class CreateEditionWeightUseCase {
 
   async execute(data: CreateEditionWeightDTO) {
     const editionWeight = EditionWeightMapper.toDomain(data)
-    this.editionWeightRepository.save(editionWeight);
+    return this.editionWeightRepository.save(editionWeight);
   }
 
 }

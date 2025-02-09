@@ -15,6 +15,7 @@ export class EditionPrismaMapper {
             onlineEvaluationEnd: edition.onlineEvaluationEnd,
             liveEvaluationStart: edition.liveEvaluationStart,
             liveEvaluationEnd: edition.liveEvaluationEnd,
+            id: edition.id,
         });
     }
     static toPrismaModel(edition: editionDomain) {

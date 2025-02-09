@@ -6,7 +6,7 @@ export class EditionRepository implements IEditionRepository {
     
     constructor(private editionDAO: EditionDAO) {}
     
-    findById(id: string): Promise<Edition | null> {
+    findById(id: number): Promise<Edition | null> {
       return this.editionDAO.findById(id);
     }
  

@@ -19,12 +19,11 @@ export class EditionWeightPrismaMapper {
     }
     static toPrismaModel(edition: editionWeightDomain) {
         return {
-            id: edition.id,
             liveComitteeEvaluationWeight: edition.liveComitteeEvaluationWeight,
             liveCommomEvaluationWeight: edition.liveCommomEvaluationWeight,
             onlineComitteeEvaluationWeight: edition.onlineComitteeEvaluationWeight,
             onlineCommomEvaluationWeight: edition.onlineCommomEvaluationWeight,
-            editionId: edition.edition.id
+            editionId: edition.edition.id!
         };
     }
 }

@@ -1,5 +1,5 @@
 export interface CreateEditionEvaluationCountDTO {
-    editionId:                       String
+    editionId:                       number
     minimumOnlineComitteeEvaluation: Number
     minimumOnlineCommomEvaluation:   Number
     minimumLiveComitteeEvaluation:   Number

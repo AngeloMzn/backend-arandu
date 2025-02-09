@@ -1,18 +1,16 @@
-import { EditionDAO } from "../../../infra/dao/EditionDAO";
-import { UserDAO } from "../../../infra/dao/UserDAO";
-import { EditionRepository } from "../../../infra/repository/EditionRepository";
-import { UserRepository } from "../../../infra/repository/UserRepository";
-import { CreateEditionController } from "./CreateEditionEvaluationCount";
-import { CreateEditionWeightUseCase } from "./CreateEditionEvaluationCountUseCase";
+import { EditionEvaluationCountDAO } from "../../../infra/dao/EditionEvaluationCountDAO";
+import { EditionEvaluationCountRepository } from "../../../infra/repository/EditionEvaluationCountRepository";
+import { CreateEditionEvaluationCountController } from "./CreateEditionEvaluationCountController";
+import { CreateEditionEvaluationCountUseCase } from "./CreateEditionEvaluationCountUseCase";
 
 
-const editionDAO = new EditionDAO();
+const editionEvaluationCountDAO = new EditionEvaluationCountDAO();
 
-const editionRepository = new EditionRepository(editionDAO);
+const editionEvaluationCountRepository  = new EditionEvaluationCountRepository(editionEvaluationCountDAO);
 
-const createEditionUseCase = new CreateEditionWeightUseCase(editionRepository);
+const createEditionEvaluationCountUseCase = new CreateEditionEvaluationCountUseCase(editionEvaluationCountRepository);
 
-const createEditionController = new CreateEditionController(createEditionUseCase);
+const createEditionEvaluationCountController = new CreateEditionEvaluationCountController(createEditionEvaluationCountUseCase);
 
 
-export { createEditionController, createEditionUseCase};
+export { createEditionEvaluationCountController , createEditionEvaluationCountUseCase};

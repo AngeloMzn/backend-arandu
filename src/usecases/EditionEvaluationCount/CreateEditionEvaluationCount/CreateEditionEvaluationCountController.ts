@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import { CreateEditionEvaluationCountUseCase } from "./CreateEditionEvaluationCountUseCase";
 import { EditionEvaluationCountMapper } from "./mappers/EditionEvaluationCountMapper";
 []
-export class CreateEditionController{
+export class CreateEditionEvaluationCountController{
     constructor(
-        private createEditionWeightUseCase: CreateEditionEvaluationCountUseCase
+        private createEditionEvaluationCountUseCase: CreateEditionEvaluationCountUseCase
     ){}
 
     async handle(req: Request, res: Response): Promise<Response>{
-        const editionWeightDTO = EditionEvaluationCountMapper.toDTO(req.body) ;
+        const editionEvaluationCountDTO = EditionEvaluationCountMapper.toDTO(req.body) ;
         try {
             await this.createEditionEvaluationCountUseCase.execute(editionEvaluationCountDTO);
 
