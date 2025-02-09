@@ -4,25 +4,34 @@ import { db } from "../config/db/db";
 import { EditionWeightPrismaMapper } from "../prismaMappers/EditionWeightMapper";
 
 
-export class EditionDAO implements IEditionWeightDAO {
+export class EditionWeightDAO implements IEditionWeightDAO {
 
   constructor() { }
 
   findById(id: string): Promise<EditionWeight | null> {
-    throw new Error("Method not implemented.");
+    return db.editionWeight.findUnique({
+      where: {
+        id: id
+      }
+    }).then((editionWeight) => {
+      if (editionWeight) {
+        return EditionWeightPrismaMapper.toDomain(editionWeight);
+      }
+      return null;
+    });
   }
 
-  async save(edition: EditionWeight) {
+  async save(editionWeight: EditionWeight) {
 
-
-    const editionModel = EditionWeightPrismaMapper.toPrismaModel(edition);
-
-
-    const editionFromPrisma = db.edition.create({
-      data: editionModel
+    const editionWeightModel = EditionWeightPrismaMapper.toPrismaModel(editionWeight);
+    console.log(editionWeightModel)
+    const editionFromPrisma = db.editionWeight.create({
+      data: editionWeightModel
     });
 
+    //retorna o objeto apenas com o id possivelmente
     return EditionWeightPrismaMapper.toDomain(await editionFromPrisma);
   }
 
 }
+

@@ -11,7 +11,7 @@ export class CreateEditionUseCase {
 
   async execute(data: EditionDTO) {
     const edition = EditionMapper.toDomain(data)
-    this.editionRepository.save(edition);
+    return this.editionRepository.save(edition);
   }
 
 }

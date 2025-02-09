@@ -1,18 +1,16 @@
-import { EditionDAO } from "../../../infra/dao/EditionDAO";
-import { UserDAO } from "../../../infra/dao/UserDAO";
-import { EditionRepository } from "../../../infra/repository/EditionRepository";
-import { UserRepository } from "../../../infra/repository/UserRepository";
+import { EditionWeightDAO } from "../../../infra/dao/EditionWeightDAO";
+import { EditionWeightRepository } from "../../../infra/repository/EditionWeightRepository";
 import { CreateEditionController } from "./CreateEditionWeight";
-import { CreateEditionUseCase } from "./CreateEditionWeightUseCase";
+import { CreateEditionWeightUseCase } from "./CreateEditionWeightUseCase";
 
 
-const editionDAO = new EditionDAO();
+const editionWeightDAO = new EditionWeightDAO();
 
-const editionRepository = new EditionRepository(editionDAO);
+const editionWeightRepository = new EditionWeightRepository(editionWeightDAO);
 
-const createEditionUseCase = new CreateEditionUseCase(editionRepository);
+const createEditionWeightUseCase = new CreateEditionWeightUseCase(editionWeightRepository);
 
-const createEditionController = new CreateEditionController(createEditionUseCase);
+const createEditionWeightController = new CreateEditionController(createEditionWeightUseCase);
 
 
-export { createEditionController, createEditionUseCase};
+export { createEditionWeightController, createEditionWeightUseCase};
