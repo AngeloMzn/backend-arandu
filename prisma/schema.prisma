@@ -20,6 +20,7 @@ model User {
   editions    UserEdition[]
 
   orientador Orientador?
+  avaliador  Avaliador?
 }
 
 model Edition {
@@ -85,6 +86,7 @@ model UserEdition {
 model Address {
   id           Int     @id @default(autoincrement())
   orientadorId Int? @unique
+  avaliadorId  Int? @unique
   CEP          String
   country      String
   state        String
@@ -95,6 +97,7 @@ model Address {
   complement   String?
 
   orientador Orientador? @relation(fields: [orientadorId], references: [id])
+  avaliador  Avaliador?  @relation(fields: [avaliadorId], references: [id])
 }
 
 model Orientador {
@@ -117,5 +120,36 @@ model Orientador {
   projectMentorshipYears Int
   institutionalProofFile String
   address                Address?
+  user                   User     @relation(fields: [userId], references: [id])
+}
+
+
+model Avaliador {
+  id                     Int      @id @default(autoincrement())
+  userId                 Int      @unique
+  CPF                    String   @unique @default("000.000.000-00")
+  birthDate              DateTime
+  gender                 String
+  ethnicity              String
+  disability             String?
+  needsAssistance        Boolean?
+  shirtSize              String
+  institutionName        String
+  institutionType        String
+  institutionalBond      String
+  educationLevel         String
+  course                 String
+  knowledgeArea          String
+  knowledgeSubArea       String
+  institutionalProofFile String
+  address                Address?
+  evaluatedOtherFairs    Boolean
+  otherFairsNames        String?
+  wasOnlineEvaluator     Boolean
+  onlineEvaluationYears  Int[]
+  wasLiveEvaluator       Boolean
+  liveEvaluationYears    Int[]
+  agreedWithRegulation   Boolean
+
   user                   User     @relation(fields: [userId], references: [id])
 }

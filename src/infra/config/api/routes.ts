@@ -4,6 +4,7 @@ import { createEditionController } from "../../../usecases/Edition/CreateEdition
 import { loginUserController } from "../../../usecases/User/LoginUser/DependencyInjector";
 import { addressController } from "../../../usecases/addressProvider/DependencyInjector";
 import { createOrientadorController } from "../../../usecases/Orientador/CreateOrientador/DependencyInjector";
+import { createAvaliadorController } from "../../../usecases/Avaliador/CreateAvaliador/DependencyInjector";
 
 const router = Router();
 
@@ -17,6 +18,10 @@ router.post('/user/singin', (req: Request, res: Response) => {
 
 router.post('/orientador/singup', (req: Request, res: Response) => {
     createOrientadorController.handle(req, res);
+})
+
+router.post('/avaliador/signup', (req: Request, res: Response) => {
+    createAvaliadorController.handle(req, res);
 })
 
 router.get('/', (request: Request, response: Response) => {
