@@ -9,7 +9,7 @@ export class UserDAO implements IUserDAO {
 
   constructor() {}
 
-  async findByEmail(email: string): Promise<User | boolean> {
+  async findByEmail(email: string): Promise<User | null> {
 
     const userFromPrisma = db.user.findUnique({
       where: { email: email },
@@ -17,7 +17,7 @@ export class UserDAO implements IUserDAO {
     
     const user = await userFromPrisma;
     if (!user) {
-      return false;
+      return null;
     }
     return userPrismaMapper.toDomain(user);
   }
