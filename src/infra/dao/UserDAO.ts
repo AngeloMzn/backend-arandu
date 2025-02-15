@@ -26,9 +26,23 @@ export class UserDAO implements IUserDAO {
     
     const userModel = userPrismaMapper.toPrismaModel(user);
     
-    const userFromPrisma = db.user.create({
-      data: userModel,
+    const existingUser = await db.user.findUnique({
+      where: { email: userModel.email },
     });
+  
+    let userFromPrisma;
+  
+    if (existingUser){
+      userFromPrisma = await db.user.update({
+        where: { email: userModel.email },
+        data: userModel,
+      });
+    } 
+    else {
+      userFromPrisma = await db.user.create({
+        data: userModel,
+      });
+    }
 
     return userPrismaMapper.toDomain(await userFromPrisma);
   }

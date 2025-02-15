@@ -6,7 +6,7 @@ export class UserRepository implements IUserRepository {
     
     constructor(private userDao: UserDAO) {}
     
-    async findByEmail(email: string): Promise<User | boolean> {
+    async findByEmail(email: string): Promise<User | null> {
         return this.userDao.findByEmail(email);
     }
 

@@ -5,9 +5,7 @@ import bcrypt from "bcryptjs";
 export class CreateUserUseCase {
   constructor(
     private userRepository: IUserRepository
-  ) {
-    
-  }
+  ) {}
 
   async execute(data: CreateUserDTO) {
     const userAlreadyExists = await this.userRepository.findByEmail(data.email);  

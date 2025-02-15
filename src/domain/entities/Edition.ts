@@ -1,4 +1,3 @@
-import { uuid } from "uuidv4";
 import { EditionWeight } from "./EditionWeight";
 import { EditionEvaluationCount } from "./EditionEvaluationCount";
 
