@@ -8,23 +8,24 @@ datasource db {
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
-  email       String        @unique
-  name        String?
-  role        String        @default("user")
-  password    String
-  CPF         String        @unique @default("000.000.000-00")
-  phoneNumber String        @default("00000000000")
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  editions    UserEdition[]
-
-  orientador Orientador?
-  avaliador  Avaliador?
+  id               Int                @id @default(autoincrement())
+  email            String             @unique
+  name             String?
+  role             String             @default("user")
+  password         String
+  CPF              String             @unique @default("000.000.000-00")
+  phoneNumber      String             @default("00000000000")
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  editions         UserEdition[]
+  isActive         Boolean?           @default(true)
+  orientador       Orientador?
+  avaliador        Avaliador?
+  organizador Organizador[]
 }
 
 model Edition {
-  id                     Int           @id @default(autoincrement())
+  id                     Int                      @id @default(autoincrement())
   name                   String
   year                   Int
   registrationStart      DateTime
@@ -55,7 +56,7 @@ model EditionWeight {
 }
 
 model EditionEvaluationCount {
-  id                              Int           @id @default(autoincrement())
+  id                              Int      @id @default(autoincrement())
   minimumOnlineComitteeEvaluation Int
   minimumOnlineCommomEvaluation   Int
   minimumLiveComitteeEvaluation   Int
@@ -72,7 +73,7 @@ model EditionEvaluationCount {
 }
 
 model UserEdition {
-  id        Int   @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   userId    Int
   editionId Int
   role      String
@@ -85,8 +86,8 @@ model UserEdition {
 
 model Address {
   id           Int     @id @default(autoincrement())
-  orientadorId Int? @unique
-  avaliadorId  Int? @unique
+  orientadorId Int?    @unique
+  avaliadorId  Int?    @unique
   CEP          String
   country      String
   state        String
@@ -123,7 +124,6 @@ model Orientador {
   user                   User     @relation(fields: [userId], references: [id])
 }
 
-
 model Avaliador {
   id                     Int      @id @default(autoincrement())
   userId                 Int      @unique
@@ -151,5 +151,14 @@ model Avaliador {
   liveEvaluationYears    Int[]
   agreedWithRegulation   Boolean
 
-  user                   User     @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Organizador {
+  id         Int     @id @default(autoincrement())
+  userId     Int
+  board      String
+  isAccepted Boolean @default(false)
+  user       User    @relation(fields: [userId], references: [id])
+
 }

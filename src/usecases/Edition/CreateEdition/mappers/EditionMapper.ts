@@ -1,5 +1,4 @@
 import { Edition } from "../../../../domain/entities/Edition";
-import { EditionWeight } from "../../../../domain/entities/EditionWeight";
 import { EditionDTO } from "../DTO/EditionDTO";
 
 export class EditionMapper {

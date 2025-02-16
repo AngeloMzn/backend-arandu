@@ -1,7 +1,7 @@
 import { UserEdition } from "@prisma/client";
 
 export class User {
-  public readonly id!: number;
+  public readonly id?: number;
   public name!: string | null;
   public email!: string;
   public password!: string;
@@ -12,7 +12,7 @@ export class User {
   public updatedAt!: Date;
   public editions?: UserEdition[];
 
-  constructor(props: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) {
+  constructor(props: Omit<User, 'createdAt' | 'updatedAt'>) {
     Object.assign(this, props);
   }
 }

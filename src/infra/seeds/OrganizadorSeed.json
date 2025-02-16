@@ -1,0 +1,10 @@
+{
+    "board": "Diretoria de Eventos",
+    "name": "João Silva",
+    "email": "joao.silva@example.com",
+    "password": "senha123",
+    "role": "organizador",
+    "CPF": "123.456.789-00",
+    "phoneNumber": "+5511999999999",
+    "isAccepted": true
+}
