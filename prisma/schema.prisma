@@ -8,19 +8,19 @@ datasource db {
 }
 
 model User {
-  id               Int                @id @default(autoincrement())
-  email            String             @unique
-  name             String?
-  role             String             @default("user")
-  password         String
-  CPF              String             @unique @default("000.000.000-00")
-  phoneNumber      String             @default("00000000000")
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  editions         UserEdition[]
-  isActive         Boolean?           @default(true)
-  orientador       Orientador?
-  avaliador        Avaliador?
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  name        String?
+  role        String        @default("user")
+  password    String
+  CPF         String        @unique @default("000.000.000-00")
+  phoneNumber String        @default("00000000000")
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  editions    UserEdition[]
+  isActive    Boolean?      @default(true)
+  orientador  Orientador?
+  avaliador   Avaliador?
   organizador Organizador[]
 }
 
@@ -156,9 +156,21 @@ model Avaliador {
 
 model Organizador {
   id         Int     @id @default(autoincrement())
-  userId     Int
+  userId     Int     @unique
   board      String
   isAccepted Boolean @default(false)
   user       User    @relation(fields: [userId], references: [id])
 
+  solicitacaoCadastroOrganizador SolicitacaoCadastroOrganizador[]
+}
+
+model SolicitacaoCadastroOrganizador {
+  id            Int         @id @default(autoincrement())
+  organizadorId Int         @unique
+  organizador   Organizador @relation(fields: [organizadorId], references: [id])
+  justification String
+  situation     String
+  date          DateTime    @default(now())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }

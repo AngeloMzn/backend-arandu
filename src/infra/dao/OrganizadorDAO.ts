@@ -4,6 +4,9 @@ import { db } from "../config/db/db";
 import { OrganizadorPrismaMapper } from "../prismaMappers/OrganizationPrismaMapper";
 
 export class OrganizadorDAO implements IOrganizadorDAO {
+  findAll(): Promise<Organizador[]> {
+    throw new Error("Method not implemented.");
+  }
   async save(organizador: Organizador): Promise<Organizador> {
     try {
       const organizadorModel = await OrganizadorPrismaMapper.toPrismaModel(organizador);
