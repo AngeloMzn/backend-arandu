@@ -1,15 +1,14 @@
-import { CreateOrganizadorUseCase } from "./CreateSolicitacaoCadastroOrganizadorUseCase";
-import { OrganizadorDAO } from "../../../infra/dao/OrganizadorDAO";
-import { OrganizadorRepository } from "../../../infra/repository/OrganizadorRepository";
-import { CreateOrganizadorController } from "./CreateSolicitacaoCadastroOrganizadorController";
-import { createUserUseCase } from "../../User/CreateUser/DependencyInjector";
+import { CreateSolicitacaoCadastroOrganizadorUseCase } from "./CreateSolicitacaoCadastroOrganizadorUseCase";
+import { CreateSolicitacaoCadastroOrganizadorController } from "./CreateSolicitacaoCadastroOrganizadorController";
+import { SolicitacaoCadastroOrganizadorDAO } from "../../../infra/dao/SolicitacaoCadastroOrganizadorDAO";
+import { SolicitacaoCadastroOrganizadorRepository } from "../../../infra/repository/SolicitacaoCadastroOrganizadorRepository";
 
-const organizadorDao = new OrganizadorDAO();
+const solicitacaoCadastroOrganizadorDAO = new SolicitacaoCadastroOrganizadorDAO();
 
-const organizadorRepository = new OrganizadorRepository(organizadorDao);
+const organizadorRepository = new SolicitacaoCadastroOrganizadorRepository(solicitacaoCadastroOrganizadorDAO);
 
-const createOrganizadorUseCase = new CreateOrganizadorUseCase(organizadorRepository);
+const createSolicitacaoCadastroOrganizadorUseCase = new CreateSolicitacaoCadastroOrganizadorUseCase(organizadorRepository);
 
-const createOrganizadorController = new CreateOrganizadorController(createOrganizadorUseCase, createUserUseCase);
+const createSolicitacaoCadastroOrganizadorController = new CreateSolicitacaoCadastroOrganizadorController(createSolicitacaoCadastroOrganizadorUseCase);
 
-export { createOrganizadorController, createOrganizadorUseCase};
+export { createSolicitacaoCadastroOrganizadorController, createSolicitacaoCadastroOrganizadorUseCase};

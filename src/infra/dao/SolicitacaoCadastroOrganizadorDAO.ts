@@ -1,6 +1,7 @@
 import { SolicitacaoCadastroOrganizador } from "../../domain/entities/SolicitacaoCadastroOrganizador";
 import { ISolicitacaoCadastroOrganizadorDAO } from "../../domain/idao/ISolicitacaoCadastroOrganizadorDAO";
 import { db } from "../config/db/db";
+import { SolicitacaoCadastroOrganizadorPrismaMapper } from "../prismaMappers/SolicitacaoCadastroOrganizadorMapper";
 
 export class SolicitacaoCadastroOrganizadorDAO
   implements ISolicitacaoCadastroOrganizadorDAO
@@ -9,14 +10,16 @@ export class SolicitacaoCadastroOrganizadorDAO
     solicitacaoCadastroOrganizador: SolicitacaoCadastroOrganizador
   ): Promise<SolicitacaoCadastroOrganizador> {
     try {
-      const solicitacaoCadastroOrganizadorModel = await OrganizadorPrismaMapper.toPrismaModel(
+      const solicitacaoCadastroOrganizadorModel = await SolicitacaoCadastroOrganizadorPrismaMapper.toPrismaModel(
         solicitacaoCadastroOrganizador
       );
-      const organizadorFromPrisma = await db.organizador.create({
-        data: organizadorModel,
-      });
-
-      return OrganizadorPrismaMapper.toDomain(organizadorFromPrisma);
+  const solicitacaoCadastroOrganizadorFromPrisma = await db.solicitacaoCadastroOrganizador.create({
+    data: solicitacaoCadastroOrganizadorModel,
+    include: {
+      organizador: true,
+    },
+  });
+      return SolicitacaoCadastroOrganizadorPrismaMapper.toDomain(solicitacaoCadastroOrganizadorFromPrisma);
     } catch (error: any) {
       console.error("Erro ao criar organizador:", error);
       throw new Error(`Erro ao criar organizador: ${error.message}`);

@@ -4,6 +4,9 @@ import { IOrganizadorRepository } from "../../domain/irepository/IOrganizadorRep
 
 export class OrganizadorRepository implements IOrganizadorRepository {
   constructor(private organizadorDao: IOrganizadorDAO) {}
+  findById(id: number): Promise<Organizador | null> {
+    return this.organizadorDao.findById(id);
+  }
 
   save(organizador: Organizador): Promise<Organizador> {
     return this.organizadorDao.save(organizador);

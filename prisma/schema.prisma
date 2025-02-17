@@ -168,8 +168,8 @@ model SolicitacaoCadastroOrganizador {
   id            Int         @id @default(autoincrement())
   organizadorId Int         @unique
   organizador   Organizador @relation(fields: [organizadorId], references: [id])
-  justification String
-  situation     String
+  justification String?
+  situation     String?     @default("Pendente")
   date          DateTime    @default(now())
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt

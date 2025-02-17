@@ -1,12 +1,13 @@
 import { Organizador } from "@prisma/client";
 
 export class SolicitacaoCadastroOrganizador {
-  private id!: number;
-  private justification!: string;
-  private organizador!: Organizador;
-  private data: Date = new Date();
-  private createdAt!: Date;
-  private updatedAt!: Date;
+  public id!: number;
+  public justification?: string;
+  situation?: string;
+  public organizador!: Organizador;
+  public data: Date = new Date();
+  public createdAt!: Date;
+  public updatedAt!: Date;
 
   constructor(
     props: Omit<SolicitacaoCadastroOrganizador, "createdAt" | "updatedAt">,

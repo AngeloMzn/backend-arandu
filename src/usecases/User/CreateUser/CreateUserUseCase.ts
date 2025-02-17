@@ -9,7 +9,8 @@ export class CreateUserUseCase {
 
   async execute(data: CreateUserDTO) {
     const userAlreadyExists = await this.userRepository.findByEmail(data.email);  
-    
+    console.log("here")
+
     if(userAlreadyExists) {
       throw new Error('Usuário já existe no sistema');
     }
