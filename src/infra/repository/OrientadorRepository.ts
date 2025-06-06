@@ -13,4 +13,9 @@ export class OrientadorRepository implements IOrientadorRepository {
     async save(orientador: Orientador): Promise<Orientador> {
         return this.orientadorDao.save(orientador);
     }
+
+    async findById(id: number): Promise<Orientador | null>{
+        return this.orientadorDao.findById();
+    }
+    
 }
