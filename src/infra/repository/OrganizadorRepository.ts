@@ -14,4 +14,8 @@ export class OrganizadorRepository implements IOrganizadorRepository {
   update(organizador: Organizador): Promise<Organizador> {
     return this.organizadorDao.update(organizador);
   }
+  findAll(): Promise<Organizador[]> {
+    return this.organizadorDao.findAll();
+  }
+
 }
