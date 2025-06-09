@@ -7,7 +7,7 @@ export class FindOrganizadorByIdUseCase {
 
   async execute(id: number) {
 
-    return await this.organizadorRepository.findById(organizador);
+    return await this.organizadorRepository.findById(id);
 
   }
 
