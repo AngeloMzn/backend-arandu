@@ -4,6 +4,18 @@ import { db } from "../config/db/db";
 import { avaliadorPrismaMapper } from "../prismaMappers/AvaliadorPrismaMapper";
 
 export class AvaliadorDAO implements IAvaliadorDAO {
+  findById(id: number): Promise<Avaliador | null> {
+    return db.avaliador.findUnique({
+      where: { id: id },
+      include: { address: true, user: true },
+    }).then(avaliadorFromPrisma => {
+      if (!avaliadorFromPrisma || !avaliadorFromPrisma.user) {
+        return null;
+      }
+      return avaliadorPrismaMapper.toDomain(avaliadorFromPrisma.user, avaliadorFromPrisma);
+    });
+  }
+  
   async findByCPF(CPF: string): Promise<Avaliador | null> {
     const userFromPrisma = await db.user.findUnique({
       where: { CPF: CPF },
