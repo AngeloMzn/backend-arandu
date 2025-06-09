@@ -1,0 +1,32 @@
+{
+  "userId": 1,
+  "CPF": "123.456.789-00",
+  "birthDate": "1990-05-20T00:00:00.000Z",
+  "gender": "Masculino",
+  "ethnicity": "Pardo",
+  "disability": null,
+  "needsAssistance": false,
+  "shirtSize": "M",
+  "institutionName": "Universidade Federal de Exemplo",
+  "institutionType": "Pública",
+  "institutionalBond": "Docente",
+  "educationLevel": "Doutorado",
+  "course": "Ciência da Computação",
+  "knowledgeArea": "Ciências Exatas e da Terra",
+  "knowledgeSubArea": "Ciência da Computação",
+  "institutionalProofFile": "comprovante.pdf",
+  "address": {
+    "street": "Rua das Américas",
+    "number": "123",
+    "city": "Campo Grande",
+    "state": "MS",
+    "zipCode": "79000-000"
+  },
+  "evaluatedOtherFairs": true,
+  "otherFairsNames": "FEBRACE, MOSTRATEC",
+  "wasOnlineEvaluator": true,
+  "onlineEvaluationYears": [2023, 2024],
+  "wasLiveEvaluator": true,
+  "liveEvaluationYears": [2022, 2023],
+  "agreedWithRegulation": true
+}
