@@ -5,4 +5,5 @@ export interface IOrganizadorDAO {
     update(organizador: Organizador): Promise<Organizador>;
     findAll(): Promise<Organizador[]>;
     findById(id: number): Promise<Organizador | null>;
+    findAll(): Promise<Organizador[]>;
 }

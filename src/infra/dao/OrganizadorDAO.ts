@@ -6,7 +6,7 @@ import { OrganizadorPrismaMapper } from "../prismaMappers/OrganizationPrismaMapp
 export class OrganizadorDAO implements IOrganizadorDAO {
   async findById(id: number): Promise<Organizador | null> {
     try {
-      
+
       const organizadorFromPrisma = await db.organizador.findUnique({
         where: {
           id: id,
@@ -26,8 +26,23 @@ export class OrganizadorDAO implements IOrganizadorDAO {
       throw new Error(`Erro ao criar organizador: ${error.message}`);
     }
   }
-  findAll(): Promise<Organizador[]> {
-    throw new Error("Method not implemented.");
+  async findAll(): Promise<Organizador[]> {
+    try {
+      const organizadoresFromPrisma = await db.organizador.findMany({
+        include: {
+          user: true,
+        },
+      });
+      const organizadores = await Promise.all(
+        organizadoresFromPrisma.map((organizador) =>
+          OrganizadorPrismaMapper.toDomain(organizador)
+        )
+      );
+      return organizadores;
+    } catch (error: any) {
+      console.error("Erro ao criar organizador:", error);
+      throw new Error(`Erro ao criar organizador: ${error.message}`);
+    }
   }
   async save(organizador: Organizador): Promise<Organizador> {
     try {
