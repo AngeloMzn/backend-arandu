@@ -25,6 +25,17 @@ export class OrientadorDAO implements IOrientadorDAO {
     return orientadorPrismaMapper.toDomain(userFromPrisma, orientadorFromPrisma);
   }
 
+  async findById(id: number): Promise<Orientador | null> {
+    const orientadorFromPrisma = await db.orientador.findUnique({
+      where: { id: id },
+      include: { address: true, user: true },
+    });
+
+    if (!orientadorFromPrisma) {
+      return null;
+    }
+    return orientadorPrismaMapper.toDomain(orientadorFromPrisma.user, orientadorFromPrisma);
+  }
   async save(orientador: Orientador): Promise<Orientador> {
     const { user, orientador: orientadorModel, address } = orientadorPrismaMapper.toPrismaModel(orientador);
     let userFromPrisma;
