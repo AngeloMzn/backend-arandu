@@ -6,6 +6,7 @@ import { addressController } from "../../../usecases/addressProvider/DependencyI
 import { createOrientadorController } from "../../../usecases/Orientador/CreateOrientador/DependencyInjector";
 import { createAvaliadorController } from "../../../usecases/Avaliador/CreateAvaliador/DependencyInjector";
 import { createOrganizadorController } from "../../../usecases/Organizador/CreateOrganizador/DependencyInjector";
+import { findAvaliadorByIdController } from "../../../usecases/Avaliador/FindAvaliadorById/DependencyInjector";
 
 const router = Router();
 
@@ -34,7 +35,11 @@ router.get('/', (request: Request, response: Response) => {
     response.status(201).send("ta funfando pohaaaaaa");
 });
 
+// rotas avaliador
 
+router.get('/avaliador/:id', (request: Request, response: Response) => {
+    findAvaliadorByIdController.handle(request, response);
+});
 
 // rotas da edição
 router.post('/edtion/create', (req: Request, res: Response) => {
