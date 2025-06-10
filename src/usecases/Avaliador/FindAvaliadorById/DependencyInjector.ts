@@ -1,14 +1,14 @@
-import { OrganizadorDAO } from "../../../infra/dao/OrganizadorDAO";
-import { OrganizadorRepository } from "../../../infra/repository/OrganizadorRepository";
+import { AvaliadorDAO } from "../../../infra/dao/AvaliadorDAO";
+import { AvaliadorRepository } from "../../../infra/repository/AvaliadorRepository";
 import { FindAvaliadorByIdController } from "./FindAvaliadorByIdController";
 import { FindAvaliadorByIdUseCase } from "./FindAvaliadorByIdUseCase";
 
 
-const organizadorDao = new OrganizadorDAO();
+const avaliadorDao = new AvaliadorDAO();
 
-const organizadorRepository = new OrganizadorRepository(organizadorDao);
+const avaliadorRepository = new AvaliadorRepository(avaliadorDao);
 
-const findAvaliadorByIdUseCase = new FindAvaliadorByIdUseCase(organizadorRepository);
+const findAvaliadorByIdUseCase = new FindAvaliadorByIdUseCase(avaliadorRepository);
 
 const findAvaliadorByIdController = new FindAvaliadorByIdController(findAvaliadorByIdUseCase);
 
