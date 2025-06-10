@@ -1,13 +1,13 @@
-import { IOrganizadorRepository } from "../../../domain/irepository/IOrganizadorRepository";
+import { IAvaliadorRepository } from "../../../domain/irepository/IAvaliadorRepository";
 
 export class FindAvaliadorByIdUseCase {
   constructor(
-    private organizadorRepository: IOrganizadorRepository
+    private avaliadorRepository: IAvaliadorRepository
   ) {}
 
   async execute(id: number) {
 
-    return await this.organizadorRepository.findById(id);
+    return await this.avaliadorRepository.findById(id);
 
   }
 
