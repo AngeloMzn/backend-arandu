@@ -174,3 +174,32 @@ model SolicitacaoCadastroOrganizador {
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
 }
+
+model Projeto {
+  id                       Int      @id @default(autoincrement())
+  codeProject              String?  @unique
+  orientadorId             Int
+  title                    String
+  knowledgeArea            String?
+  knowledgeSubArea         String?
+  researchDurationMonths   Int?
+  isContinuationProject    Boolean? @default(false)
+  isSocialVulnerability    Boolean? @default(false)
+  isAgenda2030Related      Boolean? @default(false)
+  agenda2030Category       String?
+  category                 String?
+  isAffiliatedFair         Boolean? @default(false)
+  affiliatedFairCredential String?
+  summaryText              String?
+  keywords                 String?
+  presentationVideo        String?  @db.VarChar(500)
+  imageUse                 Boolean? @default(true)
+  awardMusic               String?  @map("award_music")
+  researchProject          String?  @map("research_project")
+  expandedSummary          String?  @map("expanded_summary")
+  commitmentTerm          String?  @map("commitment_term")
+  generalAttachments       String?  @map("general_attachments")
+  submitted                Boolean  @default(false)
+
+  orientador Orientador @relation(fields: [orientadorId], references: [id], name: "ProjetoOrientador")
+}
