@@ -8,6 +8,9 @@ import { EditionPrismaMapper } from '../prismaMappers/EditionMapper';
 export class EditionDAO implements IEditionDAO {
 
   constructor() {}
+  findAll(): Promise<Edition[]> {
+    return db.edition.findMany()
+  }
   
   async findById(id: number): Promise<Edition | null> {
     try {
